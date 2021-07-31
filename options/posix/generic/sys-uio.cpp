@@ -22,7 +22,7 @@ ssize_t writev(int fd, const struct iovec *iovs, int iovc) {
 	ssize_t written = 0;
 	size_t bytes = 0;
 	for(int i = 0; i < iovc; i++) {
-		if(SSIZE_MAX - bytes < iovs[i].iov_len) {
+		if(~0ULL - bytes < iovs[i].iov_len) {
 			errno = EINVAL;
 			return -1;
 		}

@@ -392,7 +392,7 @@ char *realpath(const char *path, char *out) {
 	if(debugPathResolution)
 		mlibc::infoLogger() << "mlibc realpath(): Returns '" << resolv.data() << "'" << frg::endlog;
 
-	if(resolv.size() > PATH_MAX) {
+	if(resolv.size() > 120) {
 		errno = ENAMETOOLONG;
 		return nullptr;
 	}

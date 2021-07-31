@@ -8,7 +8,7 @@
 
 struct ObjectRepository;
 struct Scope;
-struct Loader;
+class Loader;
 struct SharedObject;
 
 extern uint64_t rtsCounter;

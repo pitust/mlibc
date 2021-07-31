@@ -521,7 +521,7 @@ int nice(int) {
 long pathconf(const char *, int name) {
 	switch (name) {
 	case _PC_NAME_MAX:
-		return NAME_MAX;
+		return 120;
 	default:
 		mlibc::infoLogger() << "missing pathconf() entry " << name << frg::endlog;
 		errno = EINVAL;

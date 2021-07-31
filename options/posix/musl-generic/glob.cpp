@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <pwd.h>
 
+#define PATH_MAX 128
 struct match
 {
 	struct match *next;

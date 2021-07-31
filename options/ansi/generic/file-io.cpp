@@ -424,6 +424,10 @@ int fd_file::determine_type(stream_type *type) {
 }
 
 int fd_file::determine_bufmode(buffer_mode *mode) {
+	// HACK(evilforset): force this to be no_buffer
+	*mode = buffer_mode::no_buffer;
+	return 0;
+
 	// When isatty() is not implemented, we fall back to the safest default (no buffering).
 	if(!mlibc::sys_isatty) {
 		MLIBC_MISSING_SYSDEP();

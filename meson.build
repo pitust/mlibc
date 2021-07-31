@@ -70,7 +70,7 @@ if not headers_only
 	elif c_compiler.get_id() == 'clang'
 		clangdir = run_command('/bin/sh', '-c',
 			' '.join(c_compiler.cmd_array())
-					+ ' -print-search-dirs | sed -ne "s/libraries: =\([^:]*\).*/\\1/p"',
+					+ ' -print-search-dirs | sed -ne "s/libraries: =\(.*\).*/\\1/p"',
 			env: ['LANG=C'],
 			check: true).stdout().strip()
 
@@ -123,6 +123,11 @@ elif host_machine.system() == 'dripos'
 	rtdl_include_dirs += include_directories('sysdeps/dripos/include')
 	libc_include_dirs += include_directories('sysdeps/dripos/include')
 	subdir('sysdeps/dripos')
+elif host_machine.system() == 'evilforestk'
+	disable_linux_option = true
+	rtdl_include_dirs += include_directories('sysdeps/evilforestk/include')
+	libc_include_dirs += include_directories('sysdeps/evilforestk/include')
+	subdir('sysdeps/evilforestk')
 else
 	error('No sysdeps defined for OS: ' + host_machine.system())
 endif
