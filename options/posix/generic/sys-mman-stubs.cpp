@@ -9,6 +9,10 @@
 #include <mlibc/debug.hpp>
 #include <mlibc/posix-sysdeps.hpp>
 
+#ifndef NAME_MAX
+#define NAME_MAX 255
+#endif
+
 int mprotect(void *pointer, size_t size, int prot) {
 	if(!mlibc::sys_vm_protect) {
 		MLIBC_MISSING_SYSDEP();

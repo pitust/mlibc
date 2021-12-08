@@ -17,6 +17,14 @@
 #include <mlibc/debug.hpp>
 #include <mlibc/posix-sysdeps.hpp>
 
+// TODO: why?
+#ifndef PATH_MAX
+#define PATH_MAX 4096
+#endif
+#ifndef NAME_MAX
+#define NAME_MAX 255
+#endif
+
 namespace {
 	constexpr bool debugPathResolution = false;
 }

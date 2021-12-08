@@ -19,6 +19,10 @@
 #include <frg/expected.hpp>
 #include <frg/printf.hpp>
 
+#ifndef NL_ARGMAX
+#define NL_ARGMAX 9
+#endif
+
 template<typename F>
 struct PrintfAgent {
 	PrintfAgent(F *formatter, frg::va_struct *vsp)
