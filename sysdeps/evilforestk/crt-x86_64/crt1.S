@@ -1,7 +1,7 @@
 
 .section .text
 .global _start
-.extern main
+.extern entry
 _start:
 
 .intel_syntax noprefix
@@ -13,6 +13,6 @@ _start:
     or ax, 3 << 9		// set CR4.OSFXSR and CR4.OSXMMEXCPT at the same time
     mov cr4, rax
 
-    call main
+    call entry
     .byte 0xeb, 0xfe
 

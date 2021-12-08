@@ -6,18 +6,33 @@
 #include <fcntl.h>
 #include <limits.h>
 
-namespace mlibc {
 
 static inline void outb(uint16_t port, uint8_t val)
 {
     asm volatile ( "outb %0, %1" : : "a"(val), "Nd"(port) );
 }
 
+
+extern "C" void frg_log(const char *message) {
+	while (*message) {
+        outb(0xe9, *message++);
+    }
+    outb(0xe9, '\n');
+}
+
+extern "C" void frg_panic(const char* msg) {
+    mlibc::infoLogger() << "\e[31mfrg: panic: " << msg << frg::endlog;
+    while (1) {}
+}
+
+
+namespace mlibc {
+
 void sys_libc_log(const char *message) {
 	while (*message) {
-        mlibc::outb(0xe9, *message++);
+        outb(0xe9, *message++);
     }
-    mlibc::outb(0xe9, '\n');
+    outb(0xe9, '\n');
 }
 
 void sys_libc_panic() {
